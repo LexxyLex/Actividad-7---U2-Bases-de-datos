@@ -1,353 +1,360 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:background="@color/bg_dark">
 
-    <ImageView
-        android:id="@+id/imgFondo"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.20"
-        android:contentDescription="Fondo GymArt"
-        android:scaleType="centerCrop"
-        android:src="@drawable/fondogym"
-        tools:ignore="MissingDefaultResource" />
+        android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/barSuperior"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/primary_dark_green"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        app:layout_constraintHeight_percent="0.12"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
+        <ImageView
+            android:id="@+id/imgFondo"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/btnSearch"
-                android:layout_width="58dp"
-                android:layout_height="58dp"
-                android:clickable="true"
-                android:contentDescription="Buscar"
-                android:focusable="true"
-                android:padding="2dp"
-                android:src="@drawable/ic_search"
-                app:tint="@color/text_white" />
-
-            <ImageView
-                android:id="@+id/btnHeart"
-                android:layout_width="58dp"
-                android:layout_height="58dp"
-                android:layout_marginStart="8dp"
-                android:clickable="true"
-                android:contentDescription="Favoritos"
-                android:focusable="true"
-                android:padding="2dp"
-                android:src="@drawable/ic_heart"
-                app:tint="@color/text_white" />
-
-            <ImageView
-                android:id="@+id/btnPerson"
-                android:layout_width="58dp"
-                android:layout_height="58dp"
-                android:layout_marginStart="8dp"
-                android:clickable="true"
-                android:contentDescription="Perfil de usuario"
-                android:focusable="true"
-                android:padding="2dp"
-                android:src="@drawable/ic_person"
-                app:tint="@color/text_white" />
-
-            <ImageView
-                android:id="@+id/btnCart"
-                android:layout_width="58dp"
-                android:layout_height="58dp"
-                android:layout_marginStart="8dp"
-                android:clickable="true"
-                android:contentDescription="Carrito de compras"
-                android:focusable="true"
-                android:padding="2dp"
-                android:src="@drawable/ic_cart"
-                app:tint="@color/text_white" />
-        </LinearLayout>
+            android:layout_height="0dp"
+            android:alpha="0.20"
+            android:contentDescription="Fondo GymArt"
+            android:scaleType="centerCrop"
+            android:src="@drawable/fondogym"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingDefaultResource" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="GymArt"
-                android:textColor="@color/text_white"
-                android:textSize="32sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvNombreUsuario"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hola Yisus"
-                android:textColor="@color/text_white"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvTitulo"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:text="SUPLEMENTACIÓN\nVEGANA 🌿"
-        android:textColor="@color/primary_green"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/row1"
-        app:layout_constraintHeight_percent="0.14"
-        app:layout_constraintTop_toBottomOf="@id/barSuperior" />
-
-    <LinearLayout
-        android:id="@+id/row1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingStart="56dp"
-        android:paddingEnd="56dp"
-        app:layout_constraintBottom_toTopOf="@id/row2"
-        app:layout_constraintHeight_percent="0.21"
-        app:layout_constraintTop_toBottomOf="@id/tvTitulo">
-
-        <LinearLayout
-            android:id="@+id/cardPreEntreno"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="12dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                app:cardBackgroundColor="@color/card_bg"
-                app:cardCornerRadius="22dp"
-                app:cardElevation="0dp">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="Pre Entreno"
-                    android:padding="4dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/img_1" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="PRE ENTRENO"
-                android:textColor="@color/text_white"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/cardProteina"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="12dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                app:cardBackgroundColor="@color/card_bg"
-                app:cardCornerRadius="22dp"
-                app:cardElevation="0dp">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="Proteina"
-                    android:padding="4dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/img_2" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="PROTEINA"
-                android:textColor="@color/text_white"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/row2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingStart="56dp"
-        android:paddingEnd="56dp"
-        app:layout_constraintBottom_toTopOf="@id/row3"
-        app:layout_constraintHeight_percent="0.19"
-        app:layout_constraintTop_toBottomOf="@id/row1">
-
-        <LinearLayout
-            android:id="@+id/cardCombos"
+            android:id="@+id/barSuperior"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:background="@color/primary_dark_green"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="12dp"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:cardBackgroundColor="@color/card_bg"
-                app:cardCornerRadius="22dp"
-                app:cardElevation="0dp">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="Combos"
-                    android:padding="4dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/img_3" />
-            </androidx.cardview.widget.CardView>
+                    android:id="@+id/btnSearch"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:clickable="true"
+                    android:contentDescription="Buscar"
+                    android:focusable="true"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_search"
+                    app:tint="@color/text_white" />
 
-            <TextView
+                <ImageView
+                    android:id="@+id/btnHeart"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="6dp"
+                    android:clickable="true"
+                    android:contentDescription="Favoritos"
+                    android:focusable="true"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_heart"
+                    app:tint="@color/text_white" />
+
+                <ImageView
+                    android:id="@+id/btnPerson"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="6dp"
+                    android:clickable="true"
+                    android:contentDescription="Perfil de usuario"
+                    android:focusable="true"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_person"
+                    app:tint="@color/text_white" />
+
+                <ImageView
+                    android:id="@+id/btnCart"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="6dp"
+                    android:clickable="true"
+                    android:contentDescription="Carrito de compras"
+                    android:focusable="true"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_cart"
+                    app:tint="@color/text_white" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="COMBOS"
-                android:textColor="@color/text_white"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-    </LinearLayout>
+                android:gravity="end"
+                android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/row3"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingStart="56dp"
-        android:paddingEnd="56dp"
-        android:paddingBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent="0.21"
-        app:layout_constraintTop_toBottomOf="@id/row2">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GymArt"
+                    android:textColor="@color/text_white"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvNombreUsuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hola Yisus"
+                    android:textColor="@color/text_white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:text="SUPLEMENTACIÓN\nVEGANA 🌿"
+            android:textColor="@color/primary_green"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/barSuperior" />
 
         <LinearLayout
-            android:id="@+id/cardCreatinas"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="12dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
+            android:id="@+id/row1"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            app:layout_constraintTop_toBottomOf="@id/tvTitulo">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+            <LinearLayout
+                android:id="@+id/cardPreEntreno"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                app:cardBackgroundColor="@color/card_bg"
-                app:cardCornerRadius="22dp"
-                app:cardElevation="0dp">
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
 
-                <ImageView
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="Creatinas"
-                    android:padding="4dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/img_4" />
-            </androidx.cardview.widget.CardView>
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/card_bg"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="CREATINAS"
-                android:textColor="@color/text_white"
-                android:textSize="22sp"
-                android:textStyle="bold" />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="Pre Entreno"
+                        android:padding="4dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/img_1" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="PRE ENTRENO"
+                    android:textColor="@color/text_white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cardProteina"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/card_bg"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="Proteina"
+                        android:padding="4dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/img_2" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="PROTEINA"
+                    android:textColor="@color/text_white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/cardFarmacos"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="12dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
+            android:id="@+id/row2"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="12dp"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            app:layout_constraintTop_toBottomOf="@id/row1">
 
-            <androidx.cardview.widget.CardView
+            <LinearLayout
+                android:id="@+id/cardCombos"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                app:cardBackgroundColor="@color/card_bg"
-                app:cardCornerRadius="22dp"
-                app:cardElevation="0dp">
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
 
-                <ImageView
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="Farmacos"
-                    android:padding="4dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/img_5" />
-            </androidx.cardview.widget.CardView>
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/card_bg"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="FÁRMACOS"
-                android:textColor="@color/text_white"
-                android:textSize="22sp"
-                android:textStyle="bold" />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="Combos"
+                        android:padding="4dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/img_3" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="COMBOS"
+                    android:textColor="@color/text_white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/row3"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="24dp"
+            app:layout_constraintTop_toBottomOf="@id/row2">
+
+            <LinearLayout
+                android:id="@+id/cardCreatinas"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/card_bg"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="Creatinas"
+                        android:padding="4dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/img_4" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="CREATINAS"
+                    android:textColor="@color/text_white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cardFarmacos"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/card_bg"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="Farmacos"
+                        android:padding="4dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/img_5" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="FÁRMACOS"
+                    android:textColor="@color/text_white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
