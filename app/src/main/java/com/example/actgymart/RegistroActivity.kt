@@ -22,6 +22,8 @@ class RegistroActivity : AppCompatActivity() {
         val btnRegistrarme = findViewById<AppCompatButton>(R.id.btnRegistrarme)
         val btnIrAInicioSesion = findViewById<Button>(R.id.btnIrAInicioSesion)
 
+        val admin = AdminSQLiteOpenHelper(this)
+
         btnRegistrarme.setOnClickListener {
             val nombre = etNombre.text.toString().trim()
             val usuario = etUsuarioReg.text.toString().trim()
@@ -31,27 +33,23 @@ class RegistroActivity : AppCompatActivity() {
 
             if (nombre.isEmpty() || usuario.isEmpty() || pass.isEmpty() || passConfirm.isEmpty() || email.isEmpty()) {
                 Toast.makeText(this, "Por favor completa todos los campos", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            if (pass != passConfirm) {
+            } else if (pass != passConfirm) {
                 Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+            } else if (admin.existeUsuario(usuario)) {
+                Toast.makeText(this, "El nombre de usuario ya está registrado", Toast.LENGTH_SHORT).show()
+            } else if (admin.existeEmail(email)) {
+                Toast.makeText(this, "El correo electrónico ya está registrado", Toast.LENGTH_SHORT).show()
+            } else {
+                val exito = admin.registrarUsuario(usuario, nombre, pass, email)
+                if (exito) {
+                    Toast.makeText(this, "Registro exitoso. Inicia sesión", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Toast.makeText(this, "Error al registrar en la base de datos", Toast.LENGTH_SHORT).show()
+                }
             }
-
-            val preferences = getSharedPreferences("GymArtPrefs", MODE_PRIVATE)
-            val editor = preferences.edit()
-            editor.putString("USUARIO_REGISTRADO", usuario)
-            editor.putString("PASSWORD_REGISTRADO", pass)
-            editor.putString("NOMBRE_REGISTRADO", nombre)
-            editor.putString("EMAIL_REGISTRADO", email)
-            editor.apply()
-
-            Toast.makeText(this, "¡Registro exitoso!", Toast.LENGTH_SHORT).show()
-
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
         }
 
         btnIrAInicioSesion.setOnClickListener {

@@ -66,4 +66,57 @@ class AdminSQLiteOpenHelper(
         db.close()
         return esValido
     }
+
+    fun obtenerNombreUsuario(usuario: String): String {
+        val db = readableDatabase
+        var nombre = usuario
+        val cursor = db.rawQuery("select nombre from usuarios where usuario = ?", arrayOf(usuario))
+        if (cursor.moveToFirst()) {
+            val nombreBD = cursor.getString(0)
+            if (!nombreBD.isNullOrEmpty()) {
+                nombre = nombreBD
+            }
+        }
+        cursor.close()
+        db.close()
+        return nombre
+    }
+
+    fun obtenerDatosUsuario(usuario: String): Array<String>? {
+        val db = readableDatabase
+        var datos: Array<String>? = null
+        val cursor = db.rawQuery("select nombre, pass, email from usuarios where usuario = ?", arrayOf(usuario))
+        if (cursor.moveToFirst()) {
+            datos = arrayOf(
+                cursor.getString(0) ?: "",
+                cursor.getString(1) ?: "",
+                cursor.getString(2) ?: ""
+            )
+        }
+        cursor.close()
+        db.close()
+        return datos
+    }
+
+    fun actualizarUsuario(usuario: String, nuevoNombre: String, nuevaPass: String, nuevoEmail: String): Boolean {
+        val db = writableDatabase
+        val cursor = db.rawQuery("select usuario from usuarios where email = ? and usuario != ?", arrayOf(nuevoEmail, usuario))
+        val emailExiste = cursor.count > 0
+        cursor.close()
+
+        if (emailExiste) {
+            db.close()
+            return false
+        }
+
+        val valores = ContentValues().apply {
+            put("nombre", nuevoNombre)
+            put("pass", nuevaPass)
+            put("email", nuevoEmail)
+        }
+
+        val filas = db.update("usuarios", valores, "usuario = ?", arrayOf(usuario))
+        db.close()
+        return filas > 0
+    }
 }

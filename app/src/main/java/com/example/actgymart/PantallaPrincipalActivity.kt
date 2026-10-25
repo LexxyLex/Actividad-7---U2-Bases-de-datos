@@ -3,11 +3,10 @@ package com.example.actgymart
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
 
 class PantallaPrincipalActivity : AppCompatActivity() {
 
@@ -16,66 +15,41 @@ class PantallaPrincipalActivity : AppCompatActivity() {
         setContentView(R.layout.activity_pantalla_principal)
 
         val tvNombreUsuario = findViewById<TextView>(R.id.tvNombreUsuario)
-        val btnSearch = findViewById<ImageView>(R.id.btnSearch)
-        val btnHeart = findViewById<ImageView>(R.id.btnHeart)
         val btnPerson = findViewById<ImageView>(R.id.btnPerson)
-        val btnCart = findViewById<ImageView>(R.id.btnCart)
 
-        val cardPreEntreno = findViewById<LinearLayout>(R.id.cardPreEntreno)
-        val cardProteina = findViewById<LinearLayout>(R.id.cardProteina)
-        val cardCombos = findViewById<LinearLayout>(R.id.cardCombos)
-        val cardCreatinas = findViewById<LinearLayout>(R.id.cardCreatinas)
-        val cardFarmacos = findViewById<LinearLayout>(R.id.cardFarmacos)
+        val usuarioLogueado = intent.getStringExtra("USUARIO_LOGUEADO") ?: ""
 
-        val usuarioIngresado = intent.getStringExtra("USUARIO_LOGUEADO") ?: "Usuario"
-        tvNombreUsuario.text = "Hola $usuarioIngresado"
-
-        btnSearch.setOnClickListener {
-            Toast.makeText(this, "Buscar productos", Toast.LENGTH_SHORT).show()
+        if (usuarioLogueado.isNotEmpty()) {
+            val admin = AdminSQLiteOpenHelper(this)
+            val nombreReal = admin.obtenerNombreUsuario(usuarioLogueado)
+            tvNombreUsuario.text = "Hola $nombreReal"
         }
 
-        btnHeart.setOnClickListener {
-            Toast.makeText(this, "Tus Favoritos", Toast.LENGTH_SHORT).show()
-        }
+        btnPerson.setOnClickListener { view ->
+            val popup = PopupMenu(this, view)
+            popup.menu.add("Ir al perfil")
+            popup.menu.add("Cerrar sesión")
 
-        btnCart.setOnClickListener {
-            Toast.makeText(this, "Tu Carrito de compras", Toast.LENGTH_SHORT).show()
-        }
-
-        btnPerson.setOnClickListener {
-            val opciones = arrayOf("Ver Perfil", "Cerrar Sesión")
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Opciones de Perfil")
-            builder.setItems(opciones) { _, which ->
-                if (which == 0) {
-                    Toast.makeText(this, "Información del usuario", Toast.LENGTH_SHORT).show()
-                } else if (which == 1) {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+            popup.setOnMenuItemClickListener { item ->
+                when (item.title) {
+                    "Ir al perfil" -> {
+                        val intent = Intent(this, PerfilActivity::class.java)
+                        intent.putExtra("USUARIO_LOGUEADO", usuarioLogueado)
+                        startActivity(intent)
+                        true
+                    }
+                    "Cerrar sesión" -> {
+                        Toast.makeText(this, "Sesión cerrada", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this, MainActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                        finish()
+                        true
+                    }
+                    else -> false
                 }
             }
-            builder.show()
-        }
-
-        cardPreEntreno.setOnClickListener {
-            Toast.makeText(this, "Sección Pre Entreno", Toast.LENGTH_SHORT).show()
-        }
-
-        cardProteina.setOnClickListener {
-            Toast.makeText(this, "Sección Proteínas", Toast.LENGTH_SHORT).show()
-        }
-
-        cardCombos.setOnClickListener {
-            Toast.makeText(this, "Sección Combos", Toast.LENGTH_SHORT).show()
-        }
-
-        cardCreatinas.setOnClickListener {
-            Toast.makeText(this, "Sección Creatinas", Toast.LENGTH_SHORT).show()
-        }
-
-        cardFarmacos.setOnClickListener {
-            Toast.makeText(this, "Sección Fármacos", Toast.LENGTH_SHORT).show()
+            popup.show()
         }
     }
 }
